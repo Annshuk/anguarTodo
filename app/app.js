@@ -1,15 +1,13 @@
 // JavaScript Document
-(function(){
-	"use strict";
-     define(['angular', 'service'], function(angular, service) {
+"use strict";
+   define(['angular', 'service'], function(angular, service) {
 	   var app = angular.module('shoppingCart', ['apiService'])
 	   .controller('todoList', Model.controller);
 	    Model.controller.$inject = ['$scope', '$timeout', 'getservice'];
 	 //define angular in app
 	 angular.bootstrap(document, ['shoppingCart']);	
-   });
- //controller
-})()
+  });
+
 
 var Model = {} || Model;
 
@@ -17,6 +15,7 @@ Model = (function(){
 	function ShoppingCart($scope, $timeout, getservice){
 	   $scope.collections  = getservice.read()
 	   var size = $scope.collections.length;
+	  
 	   //strore new data in collection	
 	   $scope.addNewItem = function(name){//add data on click	   	   	   	 
 			   getservice.newUser(name)	
@@ -35,15 +34,19 @@ Model = (function(){
 		 	$scope.list = getservice.isChecked()			
 	   };	
 	   
-	   $scope.deleteAll = function(data){
-		   console.log($scope.list)
-		 	$scope.listITem = getservice.deleteList()			
+	   $scope.deletecollection = function(){
+		 $scope.collections = getservice.deleteList()
+		 $scope.list = 0;
 	   };
 	      
 	   $scope.deleteUser = function(data){
 		   getservice.deleteUser(data)
+		   $scope.list = data.length;
 	   };
-	   
+	   $scope.reset = function(){	
+		  localStorage.clear()
+		  getservice.resetData()
+		}
 	}
 return {
 	controller: ShoppingCart

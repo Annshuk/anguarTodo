@@ -11,7 +11,8 @@
    		<div class="row">
         <input type="text" ng-model="addNewName">
         <input type="button" value="Add"  ng-click="addNewItem(addNewName)" class="btn add" />  
-        <input type="button"  value="Delete All" ng-click="deleteAll(parent.data)" class="btn delete"/>     
+        <input type="button"  value="Delete All" ng-click="deletecollection()" class="btn delete"/>  
+        <input type="button"  value="Reset List" ng-click="reset()" class="btn reset"/>        
         <br><br>    
           <hr/>          
              <ul class="todo-list">
@@ -20,7 +21,7 @@
             <input type="checkbox" ng-model="data.checked" ng-change="isChangeCheck()" >
 			<a> <span ng-bind="data.name"></span></a>
             </label>  
-            <a href="#" class="delete-btn" ng-click="deleteUser(data)" ng-show="data.checked">Delete Task</a>                    
+            <a href="javascript:;" class="delete-btn" ng-click="deleteUser(data)" ng-show="data.checked">Delete Task</a>                    
 			</li>
 			</ul>  
             <p>Archive : <span ng-bind="list.length||0"></span></p>      		

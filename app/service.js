@@ -16,6 +16,10 @@ angular.module("apiService", []).factory('getservice', ["$http", "$q",
 				 collections = newCollection;		
 			return collections;			
 			},
+			
+			api.resetData = function(){	
+			return collections;	
+			}
 			//add new data
 			api.newUser = function(user){				
 			  var found = collections.reduce(function(previous, obj){//avoiding duplicate value	
@@ -42,17 +46,18 @@ angular.module("apiService", []).factory('getservice', ["$http", "$q",
 			},
 			//delete task;
 			api.deleteUser = function(item){	
-					if(item.checked===true){
-					var del = collections.indexOf(item);
-					collections.splice(del, 1);
-					localStorage.setItem('collection', JSON.stringify(collections));
-					return collections;
-					} else alert("Please Check the item")
+				var del = collections.indexOf(item);
+				collections.splice(del, 1);
+				localStorage.setItem('collection', JSON.stringify(collections));
+				return collections;
 			},
 			
-			api.deleteList = function(item){	
-				var items = collections.length
-				console.log(items)
+			api.deleteList = function(){		    
+			    collections.splice(0, collections.length)
+				localStorage.setItem('collection', JSON.stringify(collections));
+				collections = localStorage.removeItem(collections)	
+				collections = [];			
+				return collections;
 			}
 			
 		return api;
