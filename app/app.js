@@ -43,9 +43,8 @@ Model = (function(){
 		   getservice.deleteUser(data)
 		   $scope.list = data.length;
 	   };
-	   $scope.reset = function(){	
-		  localStorage.clear()
-		  getservice.resetData()
+	   $scope.reset = function(){
+		  $scope.collections  = getservice.resetAll();
 		}
 	}
 return {
